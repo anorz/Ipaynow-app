@@ -5,12 +5,12 @@
     "authors": [
         {
             "name": "Anorz",
-            "email": "xck@anorz"
+            "email": "xck@anorz.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Ipaynow\\App\\": "src"
+            "Ipaynow\\": "src"
         }
     },
     "require": {}
