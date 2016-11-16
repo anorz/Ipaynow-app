@@ -12,7 +12,7 @@ class Log{
     static function outLog($api_n,$content){
         $time=self::getTime("Y年m月d日i分s秒x毫秒");
         $log_str="$time   $api_n\n$content\n------------------\n";
-        $file=fopen("../log/ipaynow.log", "a+");
+        $file=fopen("../storage/logs/ipaynow.log", "a+");
         fwrite($file, $log_str);
         fclose($file);
     }

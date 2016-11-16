@@ -8,12 +8,17 @@ namespace Ipaynow;
  * 用于处理通知以及查询等请求
  */
 class Services{
+    private static $para;
     /**
      * 查询处理方法
      * @param array $req
      * @param array $para
      */
-    public static function queryOrder(Array $req,Array &$para){
+    public static function getPara()
+    {
+        return self::$para;
+    }
+    public static function queryOrder(Array $req){
         //组合报文
         $req_str=self::buildReq($req);
         Log::outLog("订单查询(商户->中怡同创)", $req_str);
@@ -21,7 +26,7 @@ class Services{
         $resp_str=Net::sendMessage($req_str, Config::$query_url);
         Log::outLog("订单查询(商户->中怡同创)", $resp_str);
         //验证签名
-        return self::verifyResponse($resp_str, $para);
+        return self::verifyResponse($resp_str);
     }
 
     private static function buildReq(Array $req){
@@ -46,12 +51,11 @@ class Services{
         return Core::buildSignature($filteredReq);
     }
 
-    public static function verifyResponse($resp_str,&$resp){
+    public static function verifyResponse($resp_str){
         if ($resp_str!="") {
             parse_str($resp_str,$para);
-
             $signIsValid=self::verifySignature($para);
-            $resp=$para;
+            self::$para = $para;
             if ($signIsValid) {
                 return TRUE;
             }else{
@@ -59,4 +63,6 @@ class Services{
             }
         }
     }
+
+
 }

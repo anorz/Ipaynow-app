@@ -23,10 +23,11 @@ class QueryOrder{
         $req["mhtCharset"]=Config::CHARSET;
         $req["mhtSignType"]=Config::SIGN_TYPE;
         $req["mhtSignature"]=Core::buildSignature($req);
-        $resp=array();
-        Services::queryOrder($req, $resp);
+        $resp = Services::queryOrder($req);
 //        echo print_r($resp);//若签名验证成功，则在这里获取响应信息
-        return $resp;
+        if($resp){
+            return Services::getPara();
+        }
     }
 }
 //    $p=new QueryOrder();
