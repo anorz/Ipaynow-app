@@ -1,0 +1,17 @@
+{
+    "name": "anorz/ipaynow-app",
+    "description": "ipaynow app pay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anorz",
+            "email": "xck@anorz"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Ipaynow\\App\\": "src"
+        }
+    },
+    "require": {}
+}
